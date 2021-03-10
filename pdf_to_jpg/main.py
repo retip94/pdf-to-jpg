@@ -22,7 +22,9 @@ def pdf_to_jpg(pdf_input_path, jpeg_name):
             pdf_input_path]
     encoding = locale.getpreferredencoding()
     args = [a.encode(encoding) for a in args]
-    ghostscript.Ghostscript(*args)
+    with ghostscript.Ghostscript(*args) as g:
+        ghostscript.cleanup()
+
 
 
 def get_all_pdfs():
